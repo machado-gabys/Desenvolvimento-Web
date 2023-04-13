@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Aula 5 - Cadastro de usuários</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    
+</style>
+
+<body>
+    <div class = "container">
+        <center>
+  <h1>Usuários já cadastrados:</h1>
+  </center>
+  <ul id="userList"></ul> 
+  <center>
+  <h2>Adicionar novo usuário:</h2>
+  </center>
+  <form>
+      
+    <label for="name">Nome:</label><br>
+    <input type="text" id="name" required><br><br>
+    <label for="email">E-mail:</label><br>
+    <input type="email" id="email" required><br><br>
+    <center>
+    <button type="submit" onclick="addUser()">Cadastrar</button>
+</center>
+  </form>
+</div>
+  <script src="aula05.js"></script>
+</body>
+</html>
