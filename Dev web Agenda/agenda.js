@@ -1,46 +1,55 @@
-// função para adicionar um novo usuário na lista
+
+// bloco para adicionar um novo usuário na lista
 function addUser() {
-    // obter o nome do usuário do input
     var name = document.getElementById("name").value;
+    var phone = document.getElementById("phone").value;
+    var email = document.getElementById("email").value;
 
     if (name !== "") {
-        // obter a lista de usuários do armazenamento local
+        //aqui ele já pega o que tem no localStorage
         var userList = JSON.parse(localStorage.getItem("userList")) || [];
 
-        // adicionar o novo usuário na lista
-        userList.push(name);
+        var user = {
+            name: name,
+            phone: phone,
+            email: email
+        };
 
-        // atualizar a lista de usuários no armazenamento local
-        localStorage.setItem("userList", JSON.stringify(userList));
+        //aqui adiciona novo usuário na lista
+        userList.push(user);
 
-        // limpar o input
+        localStorage.setItem("userList", JSON.stringify(userList)); //atualiza a lista no localStorage
+
+        // limpar o form
         document.getElementById("name").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("email").value = "";
 
         // atualizar a lista de usuários exibida na página
         displayUserList();
     }
 }
 
-// função para exibir a lista de usuários na página
+// bloco para exibir a lista de usuários na página
 function displayUserList() {
     // obter a lista de usuários do armazenamento local
     var userList = JSON.parse(localStorage.getItem("userList")) || [];
 
-    // obter o elemento <ul> da página
     var ul = document.getElementById("userList");
 
-     // limpar a lista atual de usuários exibida na página
-     ul.innerHTML = "";
+    // limpa a lista atual de usuários exibida na página
+    ul.innerHTML = "";
 
-    // adicionar cada usuário da lista ao elemento <ul>
-    userList.forEach(function(name) {
+    userList.forEach(function(user) {
         var li = document.createElement("li");
-        li.textContent = name;
+        li.innerHTML = "<b>Nome:</b> " + user.name + "<br><b>Telefone:</b> " + user.phone + "<br><b>E-mail:</b> " + user.email;
         ul.appendChild(li);
     });
 }
 
-// exibir a lista de usuários quando a página carrega
+// exibi a lista de usuários quando a página carrega
 window.onload = function() {
     displayUserList();
 };
+
+//localStorage.clear(); Limpar se necessário
