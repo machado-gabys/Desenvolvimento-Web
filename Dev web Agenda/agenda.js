@@ -5,15 +5,25 @@ function addUser() {
     var phone = document.getElementById("phone").value;
     var email = document.getElementById("email").value;
 
-    if (name !== "") {
-        //aqui ele já pega o que tem no localStorage
-        var userList = JSON.parse(localStorage.getItem("userList")) || [];
+    // aqui ele verifica se todos os campos foram preenchidos
+    if (name === "" || phone === "" || email === "") {
+        alert("Favor, preencha todos os campos para adicionar um usuário.");
+        return;
+    }
 
-        var user = {
-            name: name,
-            phone: phone,
-            email: email
-        };
+    // aqui ele verifica se o e-mail é válido
+    if (!email.match(/^\S+@\S+\.\S+$/)) {
+        alert("E-mail inválido");
+        return;
+    }
+    //aqui ele já pega o que tem no localStorage
+    var userList = JSON.parse(localStorage.getItem("userList")) || [];
+
+    var user = {
+        name: name,
+        phone: phone,
+        email: email
+    };
 
         //aqui adiciona novo usuário na lista
         userList.push(user);
@@ -27,7 +37,7 @@ function addUser() {
 
         // atualizar a lista de usuários exibida na página
         displayUserList();
-    }
+    s
 }
 
 // bloco para exibir a lista de usuários na página
@@ -52,4 +62,5 @@ window.onload = function() {
     displayUserList();
 };
 
-//localStorage.clear(); Limpar se necessário
+
+//localStorage.clear(); //Limpar se necessário
